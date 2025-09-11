@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000
 
 dotenv.config();
 
-const __dirname = path.resolve();
+const __dirname = path.resolve(); // to get the current directory path
 
 
 app.use(express.json());// to parse incoming request with json payload (form req.body)
