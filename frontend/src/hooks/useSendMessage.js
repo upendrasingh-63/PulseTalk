@@ -21,7 +21,8 @@ const useSendMessage = () => {
 
             setMessages([...messages, data]);
         } catch (error) {
-            toast.error(error.message);
+            console.error("Error sending message:", error);
+            toast.error("Please refresh and try again.");
         } finally {
             setLoading(false);
         }
