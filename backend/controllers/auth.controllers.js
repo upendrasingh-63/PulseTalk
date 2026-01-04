@@ -65,17 +65,30 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
+
         const { username, password } = req.body;
         const user = await User.findOne({ username });
+        // console.log("User found:", user);
 
-        //check hash password
-        const isPasswordCorrect = await bcrypt.compare(password, user.password || "")
-
-        //if not present
-        if (!user || !isPasswordCorrect) {
-            return res.status(400).json({ msg: "Invalid username or password" })
+        // ✅ FIRST check user
+        if (!user) {
+            // console.log("User not found")
+            return res.status(400).json({
+                error: "Invalid username or password"
+            });
         }
 
+        // ✅ THEN compare password
+        const isPasswordCorrect = await bcrypt.compare(
+            password,
+            user.password
+        );
+
+        if (!isPasswordCorrect) {
+            return res.status(400).json({
+                error: "Invalid username or password"
+            });
+        }
         //generate token
         generateTokenAndSendCookie(user.id, res)
 
@@ -93,7 +106,33 @@ export const login = async (req, res) => {
     }
 }
 
+export const resetPassword = async (req, res) => {
+    try {
 
+        const { username, newPassword } = req.body;
+
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.json({
+                success: true,
+                message: "If account exists, password has been updated",
+            });
+        }
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        user.password = hashedPassword;
+        await user.save();
+
+        res.json({
+            success: true,
+            message: "Password updated successfully",
+        });
+    } catch (error) {
+        res.status(500).json({ error })
+        console.log("Error in resetPassword controller", error.message)
+    }
+};
 
 export const logout = (req, res) => {
     try {

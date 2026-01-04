@@ -19,13 +19,13 @@ export const useLogin = () => {
                 body: JSON.stringify({ username, password })
             })
             const data = await response.json()
-            if (data.error) {
-                throw new Error(data.error)
-            } else {
-                toast.success("Login  Successfully!")
-                setAuthUser(data)
-                localStorage.setItem("chat-user", JSON.stringify(data))
+            if (!response.ok) {
+                throw new Error(data.error || data.msg || 'Login failed');
             }
+            toast.success("Login  Successfully!")
+            setAuthUser(data)
+            localStorage.setItem("chat-user", JSON.stringify(data))
+
 
         } catch (error) {
             toast.error(error.message)

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useGetMessages from "../../hooks/useGetMessages";
 import Message from "./Message";
 import useListenMessages from "../../hooks/useListenMessages";
@@ -6,11 +6,10 @@ import MessageSkeleton from "../../skeletons/MessageSkeleton";
 
 const Messages = () => {
   const { messages, loading } = useGetMessages();
-  console.log("message", messages);
-  console.log(messages.length);
-  let num = true;
-  if (messages.length < 1) {
-    num = false;
+  const [num, setNum] = useState(true);
+
+  if (messages.length === 0) {
+    setNum(false);
   }
   useListenMessages();
   const lastMessageRef = useRef();
@@ -23,6 +22,11 @@ const Messages = () => {
 
   return (
     <div className="px-4 flex-1 overflow-auto">
+      {!loading && !num && (
+        <p className="text-center text-black">
+          -Send a message to start the conversation
+        </p>
+      )}
       {!loading &&
         messages.length > 0 &&
         messages.map((message) => (
@@ -30,13 +34,7 @@ const Messages = () => {
             <Message message={message} />
           </div>
         ))}
-
       {loading && [...Array(3)].map((_, idx) => <MessageSkeleton key={idx} />)}
-      {!loading && !num && (
-        <p className="text-center text-black">
-          Send a message to start the conversation
-        </p>
-      )}
     </div>
   );
 };

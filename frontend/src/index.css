@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://wallpapers.com/images/hd/starry-sky-background-hijskf4jw15jtqh8.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("D:/React course/chat-app-yt/frontend/src/assets/universe.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
