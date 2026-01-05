@@ -7,10 +7,12 @@ import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "./context/AuthContext";
 import Landing from "./pages/landing/Landing";
 import ForgetPassword from "./pages/forget/ForgetPassword";
+import Snowfall from "react-snowfall";
 function App() {
   const { authUser } = useAuthContext();
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center relative">
+      <Snowfall color="#d8b1f0" snowflakeCount={100} />
       <Routes>
         <Route
           path="/home"

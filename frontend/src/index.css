@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("D:/React course/chat-app-yt/frontend/src/assets/universe.png");
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("https://i.ibb.co/21RGRQq2/universe.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

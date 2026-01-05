@@ -217,7 +217,7 @@ export const Login = () => {
         </p>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes blob {
           0%,
           100% {
