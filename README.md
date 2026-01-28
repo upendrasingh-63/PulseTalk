@@ -2,6 +2,7 @@
 
 PulseTalk is a **full-stack real-time chat application** built using **React, Zustand, Node.js, Express, MongoDB, and Socket.IO**.  
 It supports **1-to-1 messaging**, real-time updates, and a smooth chat experience.
+You can see deployed link in about section on top right.
 
 ---
 
